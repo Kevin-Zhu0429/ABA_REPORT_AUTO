@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 300px; padding: 10px; font-family: Arial, sans-serif; }
+    textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+    button { width: 100%; padding: 10px; background: #FF9900; color: white; border: none; cursor: pointer; font-weight: bold;}
+    button:hover { background: #e38800; }
+  </style>
+</head>
+<body>
+  <h3>亚马逊 ABA 自动下载器</h3>
+  <p>请将 ASIN 列表粘贴在下方：</p>
+  <textarea id="asinList" placeholder="B0DGGCWQ9S&#10;B0C5J46W7T&#10;B09HZHW1DQ..."></textarea>
+  <button id="startBtn">▶ 开始全自动下载</button>
+  <button id="resetBtn" style="background: #6B7280; margin-top: 10px;">🔄 重置下载ASIN命名</button>
+  <button id="resetBtn" style="background: #6B7280; margin-top: 10px;">🔄 重置下载序号为 1</button>
+  <button id="batchDownloadBtn" style="background: #3B82F6; margin-top: 10px;">⬇️ 切换到下载管理器：一键提取</button>
+  <p id="status" style="color: green; font-size: 12px; mt-2"></p>
+  <script src="popup.js"></script>
+</body>
+</html>
