@@ -3,33 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    body { width: 320px; padding: 10px; font-family: Arial, sans-serif; background: #f9f9f9; }
-    textarea { width: 100%; height: 80px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; padding: 5px; box-sizing: border-box;}
-    .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: #fff; padding: 5px; border-radius: 4px; border: 1px solid #ddd;}
-    .week-input { width: 50px; padding: 3px; border: 1px solid #ccc; border-radius: 4px; text-align: center; }
-    button { width: 100%; padding: 10px; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 8px;}
+    body { width: 340px; padding: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f6f8; margin: 0;}
+    h3 { margin-top: 0; font-size: 16px; color: #1e293b; display: flex; align-items: center; }
+    textarea { width: 100%; height: 70px; margin-bottom: 8px; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; box-sizing: border-box; font-size: 12px;}
     
-    #startBtn { background: #FF9900; } #startBtn:hover { background: #e38800; }
-    #multiWeekBtn { background: #8B5CF6; } #multiWeekBtn:hover { background: #7C3AED; }
+    .card { background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);}
+    .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    
+    button { width: 100%; padding: 10px; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 8px; transition: 0.2s;}
+    button:active { transform: scale(0.98); }
+    
+    #fetchWeeksBtn { width: auto; padding: 4px 10px; font-size: 12px; background: #10B981; margin: 0; border-radius: 4px;} #fetchWeeksBtn:hover { background: #059669; }
+    #startBtn { background: #F59E0B; } #startBtn:hover { background: #D97706; }
+    #multiWeekBtn { background: #8B5CF6; margin-bottom: 0;} #multiWeekBtn:hover { background: #7C3AED; }
     #batchDownloadBtn { background: #3B82F6; } #batchDownloadBtn:hover { background: #2563EB; }
-    #resetBtn { background: #6B7280; } #resetBtn:hover { background: #4B5563; }
+    #resetBtn { background: #64748B; padding: 8px;} #resetBtn:hover { background: #475569; }
+    
+    select, input[type="number"] { border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px; outline: none; }
   </style>
 </head>
 <body>
-  <h3 style="margin-top: 0; font-size: 15px;">亚马逊 ABA 报告全自动下载</h3>
-  <textarea id="asinList" placeholder="在此粘贴ASIN列表 (用于常规批量处理)"></textarea>
+  <h3>🤖 ABA报告自动化</h3>
   
-  <div class="row">
-    <span style="font-size: 12px; color: #333; font-weight: bold;">单ASIN连续下载 ➔</span>
-    <span style="font-size: 12px;">连下 <input type="number" id="weekCount" class="week-input" value="10" min="1" max="50"> 周</span>
+  <textarea id="asinList" placeholder="在此粘贴 ASIN (常规批量下表填多个，单asin多周填 1 个)"></textarea>
+
+  <div class="card">
+    <div class="row">
+      <span style="font-size: 13px; color: #334155; font-weight: bold;">单ASIN多周下载</span>
+      <button id="fetchWeeksBtn">🔍 同步网页周数</button>
+    </div>
+    <div class="row" style="font-size: 12px; color: #475569; margin-bottom: 10px;">
+      <span>从</span>
+      <select id="startWeek" style="width: 135px; text-overflow: ellipsis;">
+        <option value="0">网页最新周 (默认)</option>
+      </select>
+      <span>往下下 <input type="number" id="weekCount" value="10" min="1" max="50" style="width: 40px; text-align: center;"> 周</span>
+    </div>
+    <button id="multiWeekBtn">▶ 执行单ASIN多周下载任务</button>
   </div>
 
-  <button id="startBtn">▶ 1. 多 ASIN 下载 (常规模式)</button>
-  <button id="multiWeekBtn">🕰️ 2. 单 ASIN 连续往下 N 周</button>
-  <button id="batchDownloadBtn">⬇️ 3. 一键批量下载 (下载管理器使用)</button>
-  <button id="resetBtn">🔄 4. 重置下载序号</button>
+  <button id="startBtn">▶ 常规多 ASIN 批量生成</button>
+  <button id="batchDownloadBtn">⬇️ 一键批量提取 (下载管理器)</button>
+  <button id="resetBtn">🔄 重置下载序号为 1</button>
   
-  <p id="status" style="color: #10B981; font-size: 12px; margin-bottom: 0; font-weight: bold;"></p>
+  <p id="status" style="color: #059669; font-size: 12px; margin-top: 5px; text-align: center; font-weight: bold;"></p>
   <script src="popup.js"></script>
 </body>
 </html>
