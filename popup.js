@@ -420,5 +420,5 @@ async function runMultiWeekAutomation(asin, weeksCount, startIndex) {
       await sleep(1500); 
   }
 
-  alert(`🎉 时光倒流任务完成！👉 请前往“下载管理器”提取！`);
+  alert(`🎉 任务完成！👉 请前往“下载管理器”提取！`);
 }
